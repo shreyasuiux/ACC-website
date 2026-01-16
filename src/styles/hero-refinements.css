@@ -1,0 +1,170 @@
+/**
+ * HERO SECTION REFINEMENTS
+ * PURPOSE: Fix spacing, alignment, and responsiveness for hero title section
+ * PRESERVES: All visual design, colors, typography, animations
+ */
+
+/* ────────────────────
+   HERO CONTAINER
+   ──────────────────── */
+
+/* Ensure hero section is properly constrained and centered */
+[data-name="Component 217"] {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ────────────────────
+   HERO TITLE SPACING
+   ──────────────────── */
+
+/* Desktop: Preserve original positioning */
+@media (min-width: 768px) {
+  [data-name="Component 217"] {
+    height: 509px;
+    min-height: 509px;
+  }
+}
+
+/* Mobile: Adjust height for stacked content */
+@media (max-width: 767px) {
+  [data-name="Component 217"] {
+    height: auto !important;
+    min-height: 450px;
+    position: relative !important;
+    top: 92px !important;
+  }
+  
+  /* Ensure video covers properly on mobile */
+  [data-name="Component 217"] video {
+    object-position: center;
+  }
+}
+
+/* ────────────────────
+   TITLE TEXT RESPONSIVE
+   ──────────────────── */
+
+/* Mobile: Better spacing for stacked titles */
+@media (max-width: 767px) {
+  /* Add padding to prevent text from touching edges */
+  [data-name="Component 217"] > div {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ────────────────────
+   ANIMATION CONSISTENCY
+   ──────────────────── */
+
+/* Ensure animations are smooth across all devices */
+[data-name="Component 217"] p {
+  will-change: transform, opacity;
+}
+
+/* Desktop: Preserve 800ms animations */
+@media (min-width: 768px) {
+  [data-name="Component 217"] p {
+    transition-duration: 800ms;
+  }
+}
+
+/* Mobile: Faster 600ms animations for better UX */
+@media (max-width: 767px) {
+  [data-name="Component 217"] p {
+    transition-duration: 600ms;
+  }
+}
+
+/* ────────────────────
+   TEXT CONTRAST FIX
+   ──────────────────── */
+
+/* Ensure text is readable on all backgrounds */
+[data-name="Component 217"] p,
+[data-name="Component 217"] h1,
+[data-name="Component 217"] h2,
+[data-name="Component 217"] h3 {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ────────────────────
+   INFO CARD RESPONSIVE
+   ──────────────────── */
+
+/* Mobile: Ensure info card doesn't overflow */
+@media (max-width: 767px) {
+  /* Style for the AI-powered transformation card on mobile */
+  .hero-info-card {
+    margin-top: 24px;
+    width: calc(100% - 32px);
+    left: 16px !important;
+    right: 16px !important;
+  }
+}
+
+/* ────────────────────
+   VERTICAL RHYTHM
+   ──────────────────── */
+
+/* Normalize spacing between hero elements */
+@media (min-width: 768px) {
+  /* Desktop: 80px spacing preserved */
+  [data-name="Component 217"] + * {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobile: 40px spacing */
+  [data-name="Component 217"] + * {
+    margin-top: 40px;
+  }
+}
+
+/* ────────────────────
+   ALIGNMENT FIX
+   ──────────────────── */
+
+/* Ensure all hero content aligns to the same grid */
+[data-name="Component 217"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ────────────────────
+   PERFORMANCE OPTIMIZATION
+   ──────────────────── */
+
+/* GPU acceleration for smooth animations */
+[data-name="Component 217"] [class*="motion"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ────────────────────
+   TYPOGRAPHY CONSISTENCY
+   ──────────────────── */
+
+/* Ensure consistent line-height and letter-spacing */
+@media (min-width: 768px) {
+  [data-name="Component 217"] p[class*="text-[80px]"] {
+    font-size: 80px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+}
+
+@media (max-width: 767px) {
+  [data-name="Component 217"] p[class*="text-[48px]"] {
+    font-size: 48px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+}

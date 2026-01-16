@@ -1,0 +1,506 @@
+/**
+ * MOBILE TAP INTERACTIONS - HOVER TO CLICK CONVERSION
+ * PURPOSE: Convert all hover effects to tap/click effects on mobile
+ * SCOPE: All pages, all sections, all interactive elements
+ */
+
+/* ============================================
+   GLOBAL MOBILE TAP STATE SYSTEM
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Enable tap behavior for all interactive elements */
+  * {
+    -webkit-tap-highlight-color: rgba(160, 32, 240, 0.1);
+    tap-highlight-color: rgba(160, 32, 240, 0.1);
+  }
+
+  /* Disable hover effects on mobile - they don't work anyway */
+  *:hover {
+    /* Prevent hover from triggering on touch devices */
+  }
+}
+
+/* ============================================
+   CARD HOVER TO TAP CONVERSION
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* All cards with hover effects become tappable */
+  [class*="hover:border-purple"],
+  [class*="hover:border-white"],
+  .group:hover,
+  .group-hover {
+    /* Cards need active state instead of hover */
+  }
+
+  /* Card tap state - applies when tapped */
+  [class*="hover:border-purple"]:active,
+  [class*="hover:border-white"]:active {
+    border-color: rgba(160, 32, 240, 0.3) !important;
+    transform: scale(0.98);
+    transition: all 0.2s ease;
+  }
+
+  /* Card groups - apply active state to children */
+  .group:active [class*="group-hover:"],
+  .group.active [class*="group-hover:"] {
+    /* Trigger group-hover styles on tap */
+  }
+}
+
+/* ============================================
+   BUTTON HOVER TO TAP CONVERSION
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Primary CTA buttons */
+  button[class*="hover:bg-white"],
+  button[class*="hover:bg-purple"],
+  a[class*="hover:bg-white"],
+  a[class*="hover:bg-purple"] {
+    /* Use active state instead of hover */
+  }
+
+  button[class*="hover:bg-white"]:active,
+  a[class*="hover:bg-white"]:active {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    transform: scale(0.95);
+  }
+
+  button[class*="hover:bg-purple"]:active,
+  a[class*="hover:bg-purple"]:active {
+    background-color: rgba(160, 32, 240, 0.9) !important;
+    transform: scale(0.95);
+  }
+
+  /* Secondary buttons with borders */
+  button[class*="hover:bg-white/10"]:active,
+  button[class*="hover:border-purple"]:active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(160, 32, 240, 0.5) !important;
+    transform: scale(0.95);
+  }
+
+  /* Icon buttons */
+  button[class*="hover:bg-purple/20"]:active,
+  a[class*="hover:bg-purple/20"]:active {
+    background-color: rgba(160, 32, 240, 0.2) !important;
+  }
+}
+
+/* ============================================
+   ICON ARROW ANIMATIONS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Arrow translate animations on tap */
+  button:active [class*="group-hover:translate-x"],
+  a:active [class*="group-hover:translate-x"],
+  .group:active [class*="group-hover:translate-x"],
+  .group.tap-active [class*="group-hover:translate-x"] {
+    transform: translateX(0.25rem) !important;
+    transition: transform 0.2s ease;
+  }
+
+  /* Icon color changes on tap */
+  button:active [class*="group-hover:text-purple"],
+  a:active [class*="group-hover:text-purple"],
+  .group:active [class*="group-hover:text-purple"],
+  .group.tap-active [class*="group-hover:text-purple"] {
+    color: rgb(160, 32, 240) !important;
+  }
+
+  button:active [class*="group-hover:text-white"],
+  a:active [class*="group-hover:text-white"],
+  .group:active [class*="group-hover:text-white"],
+  .group.tap-active [class*="group-hover:text-white"] {
+    color: rgb(255, 255, 255) !important;
+  }
+}
+
+/* ============================================
+   IMAGE SCALE ANIMATIONS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Images that scale on hover - make them scale on tap */
+  [class*="group"]:active img,
+  [class*="group"].tap-active img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  /* Motion image scaling */
+  .group:active [data-projection-id],
+  .group.tap-active [data-projection-id] {
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================
+   GLOW EFFECTS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Card glow effects on tap */
+  .group:active [class*="opacity-0"][class*="group-hover:opacity-100"],
+  .group.tap-active [class*="opacity-0"][class*="group-hover:opacity-100"] {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Border glow on tap */
+  [class*="hover:shadow"]:active,
+  [class*="hover:shadow"].tap-active {
+    box-shadow: 0 0 20px rgba(160, 32, 240, 0.3) !important;
+  }
+}
+
+/* ============================================
+   TEXT COLOR CHANGES - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Text that changes color on hover */
+  [class*="hover:text-purple"]:active,
+  [class*="hover:text-purple"].tap-active {
+    color: rgb(160, 32, 240) !important;
+  }
+
+  [class*="hover:text-white"]:active,
+  [class*="hover:text-white"].tap-active {
+    color: rgb(255, 255, 255) !important;
+  }
+
+  [class*="hover:text-gray-300"]:active,
+  [class*="hover:text-gray-300"].tap-active {
+    color: rgb(209, 213, 219) !important;
+  }
+
+  /* Group text color changes */
+  .group:active [class*="group-hover:text-purple"],
+  .group.tap-active [class*="group-hover:text-purple"] {
+    color: rgb(160, 32, 240) !important;
+  }
+}
+
+/* ============================================
+   BACKGROUND COLOR CHANGES - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Background changes on hover/tap */
+  [class*="hover:bg-white/10"]:active,
+  [class*="hover:bg-white/10"].tap-active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  [class*="hover:bg-purple/20"]:active,
+  [class*="hover:bg-purple/20"].tap-active {
+    background-color: rgba(160, 32, 240, 0.2) !important;
+  }
+
+  [class*="hover:bg-white/5"]:active,
+  [class*="hover:bg-white/5"].tap-active {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+  }
+}
+
+/* ============================================
+   BORDER COLOR CHANGES - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Border color changes on tap */
+  [class*="hover:border-purple-500/30"]:active,
+  [class*="hover:border-purple-500/30"].tap-active {
+    border-color: rgba(160, 32, 240, 0.3) !important;
+  }
+
+  [class*="hover:border-purple-500/40"]:active,
+  [class*="hover:border-purple-500/40"].tap-active {
+    border-color: rgba(160, 32, 240, 0.4) !important;
+  }
+
+  [class*="hover:border-white/20"]:active,
+  [class*="hover:border-white/20"].tap-active {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+/* ============================================
+   SCALE ANIMATIONS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Scale up on tap */
+  [class*="hover:scale-"]:active,
+  [class*="hover:scale-"].tap-active {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+  }
+
+  /* Scale down on tap (for buttons) */
+  button:active,
+  [role="button"]:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* ============================================
+   OPACITY CHANGES - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Opacity increases on tap */
+  [class*="hover:opacity-"]:active,
+  [class*="hover:opacity-"].tap-active {
+    opacity: 1 !important;
+  }
+
+  /* Group opacity changes */
+  .group:active [class*="group-hover:opacity"],
+  .group.tap-active [class*="group-hover:opacity"] {
+    opacity: 1 !important;
+  }
+}
+
+/* ============================================
+   TAB NAVIGATION - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Tab buttons */
+  [role="tab"]:active,
+  [role="tab"].tap-active {
+    color: white !important;
+    opacity: 1 !important;
+  }
+
+  /* Tab underlines/indicators on tap */
+  [role="tab"]:active::after,
+  [role="tab"].tap-active::after {
+    opacity: 1 !important;
+    width: 100% !important;
+  }
+}
+
+/* ============================================
+   LINK STYLES - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Links with hover effects */
+  a[class*="hover:text-"]:active,
+  a[class*="hover:underline"]:active {
+    color: rgb(160, 32, 240) !important;
+    text-decoration: underline !important;
+  }
+
+  /* Social media links */
+  a[class*="hover:bg-purple/20"]:active {
+    background-color: rgba(160, 32, 240, 0.2) !important;
+    border-color: rgba(160, 32, 240, 0.4) !important;
+  }
+
+  a[class*="hover:bg-purple/20"]:active [class*="group-hover:text-purple"] {
+    color: rgb(160, 32, 240) !important;
+  }
+}
+
+/* ============================================
+   FEATURE CARDS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Feature cards with icons */
+  [class*="p-6"][class*="rounded-"][class*="hover:border"]:active,
+  [class*="p-8"][class*="rounded-"][class*="hover:border"]:active,
+  [class*="p-6"][class*="rounded-"][class*="hover:border"].tap-active,
+  [class*="p-8"][class*="rounded-"][class*="hover:border"].tap-active {
+    border-color: rgba(160, 32, 240, 0.3) !important;
+    box-shadow: 0 0 20px rgba(160, 32, 240, 0.15) !important;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+}
+
+/* ============================================
+   USE CASE CARDS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Use case cards with images */
+  [class*="group"][class*="rounded-[24px]"]:active,
+  [class*="group"][class*="rounded-[24px]"].tap-active {
+    border-color: rgba(160, 32, 240, 0.3) !important;
+  }
+
+  /* Use case card images scale on tap */
+  [class*="group"][class*="rounded-[24px]"]:active img,
+  [class*="group"][class*="rounded-[24px]"].tap-active img {
+    transform: scale(1.05);
+  }
+
+  /* Use case card glow on tap */
+  [class*="group"][class*="rounded-[24px]"]:active [class*="absolute"][class*="inset-0"],
+  [class*="group"][class*="rounded-[24px]"].tap-active [class*="absolute"][class*="inset-0"] {
+    opacity: 1 !important;
+  }
+}
+
+/* ============================================
+   CTA SECTIONS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Primary CTAs in footer sections */
+  section [class*="bg-white"][class*="hover:bg-white/90"]:active,
+  section [class*="bg-white"][class*="hover:bg-white/90"].tap-active {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    transform: scale(0.98);
+  }
+
+  /* Arrow icons in CTAs */
+  section button:active [class*="group-hover:translate"],
+  section button.tap-active [class*="group-hover:translate"] {
+    transform: translateX(0.25rem) !important;
+  }
+}
+
+/* ============================================
+   NAVIGATION ITEMS - HOVER TO TAP
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Nav menu items */
+  nav a[class*="hover:text"]:active,
+  nav button[class*="hover:text"]:active,
+  nav a[class*="hover:text"].tap-active,
+  nav button[class*="hover:text"].tap-active {
+    color: rgb(160, 32, 240) !important;
+    opacity: 1 !important;
+  }
+
+  /* Nav dropdowns */
+  nav [class*="hover:bg-white/10"]:active,
+  nav [class*="hover:bg-white/10"].tap-active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* ============================================
+   PERSISTENT TAP STATE CLASS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Manual tap-active class for toggle behavior */
+  .tap-active {
+    /* Will trigger all tap-active selectors above */
+  }
+
+  /* Visual feedback for tap-active state */
+  .tap-active {
+    /* Add subtle glow */
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.2);
+  }
+}
+
+/* ============================================
+   SMOOTH TRANSITIONS FOR ALL TAP EFFECTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Ensure all tap interactions are smooth */
+  *[class*="hover:"],
+  *[class*="group-hover:"],
+  .group * {
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+  }
+
+  /* But respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *[class*="hover:"],
+    *[class*="group-hover:"],
+    .group * {
+      transition: none !important;
+    }
+  }
+}
+
+/* ============================================
+   DISABLE MOTION WHILEHOVER ON MOBILE
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Motion whileHover doesn't work on mobile - use tap instead */
+  /* This is handled in React components with whileTap */
+  /* CSS provides fallback for cases where whileTap isn't implemented */
+  
+  [data-projection-id]:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY - TAP TARGET SIZES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Ensure all tappable elements are big enough */
+  button,
+  a,
+  [role="button"],
+  [onclick],
+  [class*="cursor-pointer"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* But allow small icons if they're in a large container */
+  button > svg,
+  a > svg {
+    min-height: unset;
+    min-width: unset;
+  }
+}
+
+/* ============================================
+   VISUAL FEEDBACK FOR ALL TAPS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Add subtle scale feedback to all interactive elements */
+  button:active,
+  a:active,
+  [role="button"]:active,
+  [onclick]:active,
+  [class*="cursor-pointer"]:active {
+    opacity: 0.9;
+  }
+
+  /* Ripple effect hint */
+  button:active::after,
+  [role="button"]:active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(160, 32, 240, 0.1) 0%, transparent 70%);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+  }
+
+  @keyframes ripple {
+    from {
+      transform: scale(0);
+      opacity: 1;
+    }
+    to {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+}

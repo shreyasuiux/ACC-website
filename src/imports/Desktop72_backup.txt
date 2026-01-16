@@ -1,0 +1,53 @@
+function MainContent({ videoModalOpen }: { videoModalOpen: () => void }) {
+  return (
+    <div className="w-full px-8 flex flex-col items-center gap-16 relative py-20" data-name="Main Content">
+      <div className="flex flex-col items-center gap-4 max-w-[900px]">
+        <p className="font-['Montserrat:SemiBold',sans-serif] not-italic text-[48px] text-center text-white">
+          Customer Success Stories
+        </p>
+        <p className="font-['Montserrat:Regular',sans-serif] leading-[1.6] not-italic text-[18px] text-center text-white/80">
+          Hear firsthand how our solutions have boosted online success for users like you.
+        </p>
+      </div>
+
+      <div className="hidden md:flex w-full max-w-[1200px] gap-12 items-center">
+        <div className="relative w-[480px] shrink-0">
+          <div 
+            className="relative rounded-2xl overflow-hidden h-[300px] cursor-pointer group" 
+            onClick={videoModalOpen}
+            role="button"
+            tabIndex={0}
+          >
+            <img 
+              alt="Cloud Migration Success at Religare Broking" 
+              className="absolute inset-0 w-full h-full object-cover" 
+              src={imgImageCloudMigrationSuccessAtReligareBroking} 
+            />
+            
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+              <p className="text-[14px] text-white tracking-wide uppercase">AMIT BHATIA</p>
+              <p className="text-[12px] text-[#8C45FF] tracking-wide uppercase">RELIGARE BROKING</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex-1 flex flex-col gap-6">
+          <p className="text-[28px] text-white leading-[1.3]">Cloud Migration Success at Religare Broking</p>
+          <p className="text-[16px] text-white/80 leading-[1.6]">Amit Bhatia, CISO at Religare Broking, shares how ACC's multi-tier cloud solution transformed their IT infrastructure, improving uptime, performance, and scalability.</p>
+          <div className="flex flex-col gap-1">
+            <p className="text-[16px] text-white">Amit Bhatia</p>
+            <p className="text-[14px] text-white/70">CISO at Religare Broking</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

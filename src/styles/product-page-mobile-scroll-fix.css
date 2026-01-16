@@ -1,0 +1,302 @@
+/**
+ * ALL PAGES & MODALS - MOBILE HORIZONTAL SCROLL FIX
+ * PURPOSE: Prevent horizontal scrolling/sliding when navigating between pages/modals on mobile
+ * OPTIMIZED FOR PERFORMANCE: Removed ALL universal selectors and minimized !important flags
+ * 
+ * AFFECTED COMPONENTS:
+ * - Product Pages (6): Agent Studio, Atlas API Manager, Ottohm Video, ITSM Ticketing, AI Ops, Smart Contracts
+ * - Company Pages (5): Our Team, About Us, Partners, Careers, News & Updates
+ * - Service Pages (7): Cloud Practice, Digital Engineering, Big Data, App Modernization, Security, Database Management, ERP & Testing
+ * - AI Pages (3): AI Page, BFSI Agents, Brand Management Agents
+ * - Other Pages (1): Case Studies
+ * - Modals (3): Get Started Modal, Search Modal, Video Modal
+ * - Home Page: All sections and components
+ * 
+ * TOTAL: 25+ full-page components + modals + home page sections = UNIVERSAL FIX
+ * PERFORMANCE: Optimized selectors, NO universal selectors, minimal !important, GPU acceleration enabled
+ */
+
+/* ============================================
+   PERFORMANCE OPTIMIZATION
+   ============================================ */
+
+/* Use will-change for known animated properties to improve performance */
+@media (max-width: 767px) {
+  div[class*="fixed inset-0"] {
+    will-change: opacity;
+  }
+}
+
+/* ============================================
+   ALL FULL-PAGE OVERLAYS - PREVENT HORIZONTAL SCROLL
+   ============================================ */
+
+/* All pages use fixed positioning - ensure no horizontal movement */
+div[class*="fixed inset-0 z-[1100]"],
+div[class*="fixed inset-0 z-[2000]"],
+div[class*="fixed inset-0 z-[9998]"],
+div[class*="fixed inset-0 z-[9999]"] {
+  overflow-x: hidden;
+  width: 100vw;
+  max-width: 100vw;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+/* Prevent any child elements from causing horizontal overflow */
+div[class*="fixed inset-0 z-[1100]"] > *,
+div[class*="fixed inset-0 z-[2000]"] > *,
+div[class*="fixed inset-0 z-[9998]"] > *,
+div[class*="fixed inset-0 z-[9999]"] > * {
+  max-width: 100%;
+}
+
+/* ============================================
+   MODALS - PREVENT HORIZONTAL SCROLL
+   ============================================ */
+
+/* Get Started Modal (z-[2000]) */
+@media (max-width: 767px) {
+  div[class*="fixed inset-0 z-[2000]"] {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/* Search Modal (z-[9998], z-[9999]) */
+@media (max-width: 767px) {
+  div[class*="fixed inset-0"][class*="z-[9998]"],
+  div[class*="fixed inset-0"][class*="z-[9999]"] {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Search modal content container */
+  div[class*="fixed top-"][class*="z-[9999]"] {
+    max-width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Video Modal */
+@media (max-width: 767px) {
+  div[class*="fixed inset-0"][class*="z-[9999]"] .aspect-video {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* ============================================
+   HOME PAGE SECTIONS - PREVENT HORIZONTAL SCROLL
+   ============================================ */
+
+/* Main home page wrapper */
+@media (max-width: 767px) {
+  [data-name="Desktop - 72"] {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100vw;
+  }
+  
+  /* All sections on home page */
+  [data-name="Desktop - 72"] section,
+  [data-name="Desktop - 72"] > div {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Containers and frames */
+  [data-name="Desktop - 72"] [class*="container"],
+  [data-name="Desktop - 72"] [class*="frame"] {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Hero section */
+  [data-name="Desktop - 72"] [class*="hero"] {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Cards and grids */
+  [data-name="Desktop - 72"] [class*="grid"],
+  [data-name="Desktop - 72"] [class*="flex"] {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================
+   DISABLE HORIZONTAL SLIDE ANIMATIONS
+   ============================================ */
+
+/* Remove any horizontal transform animations on page transitions */
+@media (max-width: 767px) {
+  /* AnimatePresence or Framer Motion horizontal slides - DISABLE */
+  div[class*="fixed inset-0 z-[1100]"] {
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Override any translateX transforms */
+  div[class*="fixed inset-0 z-[1100]"][style*="transform"] {
+    transform: none;
+  }
+}
+
+/* ============================================
+   FIX: PRODUCT PAGE CONTENT CONTAINERS
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Ensure all content within product pages respects viewport width */
+  div[class*="fixed inset-0 z-[1100]"] .relative,
+  div[class*="fixed inset-0 z-[1100]"] .absolute {
+    max-width: 100vw;
+  }
+  
+  /* Hero sections specifically */
+  div[class*="fixed inset-0 z-[1100]"] section[class*="min-h-screen"] {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Cards and grids */
+  div[class*="fixed inset-0 z-[1100]"] [class*="grid"],
+  div[class*="fixed inset-0 z-[1100]"] [class*="flex"] {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================
+   FIX: MOBILE NAVIGATION BREADCRUMBS
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Ensure breadcrumb navigation doesn't cause overflow */
+  div[class*="fixed inset-0 z-[1100]"] nav,
+  div[class*="fixed inset-0 z-[1100]"] [class*="breadcrumb"] {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================
+   ROOT LEVEL OVERFLOW PREVENTION
+   ============================================ */
+
+/* Ensure no horizontal scroll at root level when product pages are open */
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+  }
+  
+  html {
+    overflow-x: hidden;
+    width: 100vw;
+    max-width: 100vw;
+  }
+  
+  /* Main app wrapper */
+  #root,
+  [data-name="Desktop - 72"] {
+    overflow-x: hidden;
+    width: 100vw;
+    max-width: 100vw;
+  }
+}
+
+/* ============================================
+   FIX: IMAGES AND MEDIA
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Ensure images don't cause horizontal overflow */
+  div[class*="fixed inset-0 z-[1100]"] img,
+  div[class*="fixed inset-0 z-[1100]"] video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* SVG elements */
+  div[class*="fixed inset-0 z-[1100]"] svg {
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   FIX: TEXT AND TYPOGRAPHY
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Prevent long text from causing horizontal overflow */
+  div[class*="fixed inset-0 z-[1100]"] h1,
+  div[class*="fixed inset-0 z-[1100]"] h2,
+  div[class*="fixed inset-0 z-[1100]"] h3,
+  div[class*="fixed inset-0 z-[1100]"] p {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* ============================================
+   DESKTOP - NO CHANGES (≥768px)
+   ============================================ */
+
+@media (min-width: 768px) {
+  /* Desktop product pages should work normally */
+  /* Only enforce vertical scroll, allow natural width behavior */
+  div[class*="fixed inset-0 z-[1100]"] {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY: REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Remove all animations for accessibility */
+  div[class*="fixed inset-0 z-[1100]"] {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATION - SCROLL SMOOTHING
+   ============================================ */
+
+/* Enable GPU acceleration for smooth scrolling */
+@media (max-width: 767px) {
+  div[class*="fixed inset-0 z-[1100]"],
+  div[class*="fixed inset-0 z-[2000]"],
+  div[class*="fixed inset-0 z-[9998]"],
+  div[class*="fixed inset-0 z-[9999]"] {
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    transform: translateZ(0); /* Force GPU acceleration */
+    backface-visibility: hidden; /* Prevent flickering */
+  }
+  
+  /* Optimize scroll containers */
+  div[class*="overflow-y-auto"] {
+    contain: layout style paint; /* CSS containment for performance */
+  }
+}

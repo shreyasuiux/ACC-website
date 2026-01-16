@@ -1,0 +1,240 @@
+/**
+ * Mobile Navigation Styles
+ * PURPOSE: Mobile-specific navigation styling
+ * PRESERVES: All design system colors and spacing
+ */
+
+/* Mobile nav wrapper - allows proper structure */
+.mobile-nav-wrapper {
+  /* No styles needed - just a structural wrapper */
+}
+
+/* Mobile menu container - transparent wrapper for AnimatePresence */
+.mobile-menu-container {
+  /* Invisible wrapper, doesn't interfere with children */
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Enable pointer events on children */
+.mobile-menu-container > * {
+  pointer-events: auto;
+}
+
+/* ────────────────────
+   MOBILE HEADER
+   ──────────────────── */
+
+/* Fixed header for mobile - always visible */
+@media (max-width: 767px) {
+  /* Ensure mobile nav has proper backdrop blur support */
+  .mobile-nav-header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  /* Adjust main content to account for fixed header */
+  [data-name="Desktop - 72"] {
+    padding-top: 0;
+  }
+  
+  /* Hero section should start below mobile nav */
+  [data-name="Component 217"] {
+    top: 65px !important;
+  }
+}
+
+/* ────────────────────
+   BREADCRUMBS STYLING
+   ──────────────────── */
+
+/* Ensure breadcrumbs are readable and don't overflow */
+.breadcrumb-container {
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.breadcrumb-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Breadcrumb text truncation for very long paths */
+.breadcrumb-item {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ────────────────────
+   HAMBURGER MENU
+   ──────────────────── */
+
+/* Smooth transitions for menu open/close */
+.mobile-menu-panel {
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Menu item hover effect */
+.mobile-menu-item {
+  transition: all 0.2s ease-out;
+}
+
+.mobile-menu-item:active {
+  transform: scale(0.98);
+}
+
+/* ────────────────────
+   Z-INDEX MANAGEMENT
+   ──────────────────── */
+
+/* Ensure proper stacking order */
+@media (max-width: 767px) {
+  /* Mobile nav should be above everything */
+  .mobile-nav-header {
+    z-index: 1300;
+  }
+  
+  /* Menu backdrop */
+  .mobile-menu-backdrop {
+    z-index: 1250;
+  }
+  
+  /* Menu panel */
+  .mobile-menu-panel {
+    z-index: 1260;
+  }
+  
+  /* Desktop nav hidden on mobile */
+  .desktop-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Hide mobile nav on desktop */
+  .mobile-nav-header {
+    display: none;
+  }
+}
+
+/* ────────────────────
+   LOGO SIZING
+   ──────────────────── */
+
+/* Consistent logo size across mobile header */
+.mobile-logo {
+  width: 80px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.mobile-logo svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ────────────────────
+   TOUCH TARGETS
+   ──────────────────── */
+
+/* Ensure all interactive elements meet 44px minimum */
+@media (max-width: 767px) {
+  .mobile-nav-header button,
+  .mobile-menu-item {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ────────────────────
+   SCROLL BEHAVIOR
+   ──────────────────── */
+
+/* Prevent body scroll when menu is open */
+body.mobile-menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* ────────────────────
+   ANIMATION PERFORMANCE
+   ──────────────────── */
+
+/* GPU acceleration for smooth animations */
+.mobile-menu-panel,
+.mobile-menu-backdrop {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ────────────────────
+   ACCESSIBILITY
+   ──────────────────── */
+
+/* Focus states for keyboard navigation */
+.mobile-nav-header button:focus-visible,
+.mobile-menu-item:focus-visible {
+  outline: 2px solid rgba(147, 51, 234, 0.8);
+  outline-offset: 2px;
+}
+
+/* ────────────────────
+   BREADCRUMB CHEVRONS
+   ──────────────────── */
+
+/* Style chevron separators */
+.breadcrumb-chevron {
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+/* Home icon in breadcrumbs */
+.breadcrumb-home {
+  color: rgb(168, 85, 247); /* purple-400 */
+  flex-shrink: 0;
+}
+
+/* ────────────────────
+   MOBILE MENU SECTIONS
+   ──────────────────── */
+
+/* Dividers between menu sections */
+.mobile-menu-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 16px 0;
+}
+
+/* Contact button at bottom of menu */
+.mobile-menu-cta {
+  background: linear-gradient(135deg, rgb(147, 51, 234), rgb(37, 99, 235));
+  transition: opacity 0.2s ease-out;
+}
+
+.mobile-menu-cta:active {
+  opacity: 0.9;
+}
+
+/* ────────────────────
+   SAFE AREA INSETS
+   ──────────────────── */
+
+/* Support for notch devices (iPhone X+) */
+@supports (padding: max(0px)) {
+  @media (max-width: 767px) {
+    .mobile-nav-header {
+      padding-top: max(12px, env(safe-area-inset-top));
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+    
+    .mobile-menu-panel {
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+  }
+}

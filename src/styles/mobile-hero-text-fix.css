@@ -1,0 +1,214 @@
+/**
+ * MOBILE HERO TEXT FIX
+ * PURPOSE: Prevent hero title text from being cropped on mobile
+ * ISSUE: "Intelligence" was being cut off on small screens
+ */
+
+/* ============================================
+   MOBILE HERO TITLE OVERFLOW PREVENTION
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Hero title container - ensure no overflow */
+  [class*="absolute"][class*="left-4"][class*="right-4"] {
+    overflow: visible !important;
+    max-width: calc(100vw - 32px) !important;
+  }
+
+  /* Hero title text elements - prevent cropping */
+  [class*="text-[40px]"],
+  [class*="text-[31px]"],
+  [class*="text-[32px]"],
+  [class*="text-[35px]"],
+  [class*="text-[36px]"] {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+
+  /* Specific fix for hero titles */
+  [class*="Montserrat:Bold"] [class*="text-"],
+  [class*="font-bold"][class*="uppercase"] {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   VERY SMALL SCREENS (iPhone SE, etc)
+   ============================================ */
+
+@media (max-width: 375px) {
+  /* Further reduce text size on very small screens */
+  [class*="md:hidden"][class*="text-[31px]"] p,
+  [class*="md:hidden"][class*="text-[31px]"],
+  [class*="md:hidden"][class*="text-[32px]"] p,
+  [class*="md:hidden"][class*="text-[32px]"] {
+    font-size: 27px !important;
+  }
+
+  /* Extra padding to prevent edge cropping */
+  [class*="absolute"][class*="left-4"][class*="right-4"] {
+    padding-right: 1rem !important;
+    max-width: calc(100vw - 40px) !important;
+  }
+}
+
+/* ============================================
+   LANDSCAPE MOBILE
+   ============================================ */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  /* Adjust text size in landscape mode */
+  [class*="md:hidden"][class*="text-[32px]"] p,
+  [class*="md:hidden"][class*="text-[32px]"] {
+    font-size: 30px !important;
+  }
+}
+
+/* ============================================
+   SAFE AREA INSETS (iPhone notch, etc)
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Respect safe area insets */
+  [class*="absolute"][class*="left-4"] {
+    left: max(1rem, env(safe-area-inset-left)) !important;
+  }
+
+  [class*="absolute"][class*="right-4"] {
+    right: max(1rem, env(safe-area-inset-right)) !important;
+  }
+}
+
+/* ============================================
+   HERO TITLE WORD SPACING
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Ensure proper spacing between hero title words */
+  [class*="md:hidden"] p[class*="mb-1"] {
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* First word (Secure.) */
+  [class*="md:hidden"] p:first-child {
+    margin-top: 0 !important;
+  }
+
+  /* Last word (Intelligence.) */
+  [class*="md:hidden"] p:last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* ============================================
+   PREVENT HORIZONTAL SCROLL
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Ensure hero section doesn't cause horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Hero container max width */
+  [data-name="Component 217"],
+  [class*="hero"] {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* All text in hero should fit screen */
+  [class*="md:hidden"] * {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+}
+
+/* ============================================
+   TEXT READABILITY IMPROVEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Improve text contrast on mobile */
+  [class*="md:hidden"][class*="text-white"] p {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Ensure text is always readable */
+  [class*="md:hidden"] {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================
+   ANIMATION SAFETY
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Prevent animations from causing overflow */
+  [class*="absolute"][class*="left-4"] * {
+    transform-origin: left center;
+  }
+
+  /* Ensure animated text stays within bounds */
+  [data-projection-id] {
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* ============================================
+   SPECIFIC FIX FOR "INTELLIGENCE" CROPPING
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Fix for main hero title container on mobile */
+  h1[class*="text-[60px]"] {
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+  
+  /* Ensure all hero title divs fit properly and periods stay attached */
+  h1[class*="text-[60px]"] div {
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+  }
+  
+  /* Specific fix for text-[44px] divs on mobile */
+  h1 div[class*="text-[44px]"] {
+    font-size: 42px !important;
+    line-height: 1.1 !important;
+  }
+
+  /* Fallback: If still cropping, reduce size slightly */
+  @media (max-width: 350px) {
+    /* Extra small screens - reduce hero title size */
+    h1 div[class*="text-[44px]"] {
+      font-size: 36px !important;
+      line-height: 1.1 !important;
+    }
+  }
+}
+
+/* ============================================
+   DEBUG MODE (uncomment to see boundaries)
+   ============================================ */
+
+/*
+@media (max-width: 768px) {
+  [class*="md:hidden"] {
+    outline: 2px solid red !important;
+  }
+
+  [class*="md:hidden"] p {
+    outline: 1px solid yellow !important;
+  }
+}
+*/

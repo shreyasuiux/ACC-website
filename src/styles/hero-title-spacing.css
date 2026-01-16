@@ -1,0 +1,174 @@
+/**
+ * HERO TITLE SPACING FIX
+ * PURPOSE: Ensure proper spacing and prevent period wrapping in hero title
+ * ISSUE: Period after "INTELLIGENCE" was wrapping to new line
+ */
+
+/* ============================================
+   DESKTOP & TABLET SPACING
+   ============================================ */
+
+@media (min-width: 769px) {
+  /* Hero title - proper spacing between lines */
+  h1[class*="space-y-1"] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* 4px spacing between lines */
+  }
+  
+  /* Ensure periods stay attached */
+  h1 div[class*="whitespace-nowrap"] {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+  }
+}
+
+/* ============================================
+   MOBILE SPACING (≤768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Hero title container */
+  h1[class*="space-y-1"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important; /* 8px spacing between lines on mobile */
+  }
+  
+  /* Each title line - ensure periods stay attached */
+  h1[class*="space-y-1"] > div {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+  }
+  
+  /* Prevent any line breaking within words */
+  h1[class*="uppercase"] div {
+    display: block !important;
+    text-overflow: clip !important;
+  }
+  
+  /* Ensure container doesn't clip content */
+  h1[class*="text-[60px]"] {
+    overflow: visible !important;
+    width: 100% !important;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (≤375px)
+   ============================================ */
+
+@media (max-width: 375px) {
+  /* Slightly tighter spacing on very small screens */
+  h1[class*="space-y-1"] {
+    gap: 0.375rem !important; /* 6px spacing */
+  }
+}
+
+/* ============================================
+   VERY SMALL SCREENS (≤350px)
+   ============================================ */
+
+@media (max-width: 350px) {
+  /* Maintain readability on tiny screens */
+  h1[class*="space-y-1"] {
+    gap: 0.25rem !important; /* 4px spacing */
+  }
+}
+
+/* ============================================
+   WHITESPACE AND WRAPPING PREVENTION
+   ============================================ */
+
+/* Prevent any text wrapping in hero title */
+h1[class*="uppercase"][class*="font-bold"] div[class*="whitespace-nowrap"] {
+  white-space: nowrap !important;
+  word-wrap: normal !important;
+  overflow-wrap: normal !important;
+  word-break: keep-all !important;
+  hyphens: none !important;
+}
+
+/* ============================================
+   LINE HEIGHT OPTIMIZATION
+   ============================================ */
+
+/* Proper line height for title */
+h1[class*="leading-[1.05]"] {
+  line-height: 1.05 !important;
+}
+
+/* Individual line items should inherit */
+h1[class*="leading-[1.05]"] > div {
+  line-height: inherit !important;
+}
+
+/* ============================================
+   ANIMATION SAFETY
+   ============================================ */
+
+/* Ensure motion.div animations don't break layout */
+h1 div[data-projection-id] {
+  white-space: nowrap !important;
+  overflow: visible !important;
+}
+
+/* ============================================
+   PERIOD ATTACHMENT GUARANTEE
+   ============================================ */
+
+/* Absolutely ensure periods never wrap */
+h1 div::after {
+  content: none; /* Prevent any pseudo-content from interfering */
+}
+
+/* Treat text content as atomic unit */
+h1 div {
+  display: block;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   RESPONSIVE FONT SIZE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Mobile: 42px */
+  h1 div[class*="text-[44px]"] {
+    font-size: 42px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  /* Small mobile: 38px */
+  h1 div[class*="text-[44px]"] {
+    font-size: 38px !important;
+  }
+}
+
+@media (max-width: 350px) {
+  /* Very small mobile: 36px */
+  h1 div[class*="text-[44px]"] {
+    font-size: 36px !important;
+  }
+}
+
+/* ============================================
+   CONTAINER PADDING FIX
+   ============================================ */
+
+/* Ensure parent container has enough space */
+div[class*="overflow-visible"] {
+  overflow: visible !important;
+  padding-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  div[class*="overflow-visible"] {
+    padding-right: 0.25rem;
+  }
+}

@@ -1,0 +1,259 @@
+/**
+ * HERO SECTION SEPARATION FIX
+ * PURPOSE: Clearly separate hero title from info card on mobile and desktop
+ * PRESERVES: All visual design, colors, animations
+ */
+
+/* ────────────────────
+   DESKTOP SEPARATION
+   ──────────────────── */
+
+@media (min-width: 768px) {
+  /* Hero container with proper overflow for desktop */
+  [data-name="Component 217"] {
+    overflow: visible !important;
+    position: relative;
+  }
+  
+  /* Title area - left 40% */
+  [data-name="Component 217"] > div:nth-child(3) {
+    width: 60%;
+    padding-right: 40px;
+  }
+  
+  /* Card area - right 40% with margin */
+  [data-name="Component 217"] > div:nth-child(4) {
+    width: 40%;
+    padding-left: 40px;
+  }
+}
+
+/* ────────────────────
+   MOBILE SEPARATION
+   ──────────────────── */
+
+@media (max-width: 767px) {
+  /* Hero container - increased height for stacked content */
+  [data-name="Component 217"] {
+    height: 520px !important;
+    min-height: 520px;
+    overflow: visible !important;
+    position: relative;
+  }
+  
+  /* Title area - top section with breathing room */
+  [data-name="Component 217"] .hero-title-mobile {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+  }
+  
+  /* Card area - bottom section with clear separation */
+  [data-name="Component 217"] .hero-card-mobile {
+    margin-top: auto;
+    transform: translateY(0) !important;
+  }
+  
+  /* Ensure card doesn't overlap title */
+  [data-name="Component 217"] > div:last-child {
+    position: relative;
+    bottom: 16px;
+    z-index: 20;
+  }
+}
+
+/* ────────────────────
+   CLEAR VISUAL SEPARATION
+   ──────────────────── */
+
+/* Add subtle divider on mobile between title and card */
+@media (max-width: 767px) {
+  [data-name="Component 217"]::after {
+    content: '';
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 220px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.1) 20%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent
+    );
+    z-index: 5;
+  }
+}
+
+/* ────────────────────
+   TITLE SPACING FIX
+   ──────────────────── */
+
+/* Tighten title spacing on mobile to make room for card */
+@media (max-width: 767px) {
+  /* Title text should be more compact */
+  [data-name="Component 217"] p[class*="text-[40px]"],
+  [data-name="Component 217"] p[class*="text-[48px]"] {
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+  }
+}
+
+/* ────────────────────
+   CARD ELEVATION
+   ──────────────────── */
+
+/* Make card stand out more on mobile */
+@media (max-width: 767px) {
+  [data-name="Component 217"] .hero-card-mobile,
+  [data-name="Component 217"] > div:last-child > div {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                0 2px 8px rgba(147, 51, 234, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Desktop card elevation preserved */
+@media (min-width: 768px) {
+  [data-name="Component 217"] [class*="left-[946px]"] {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ────────────────────
+   POSITIONING FIX
+   ──────────────────── */
+
+/* Ensure proper z-index stacking */
+[data-name="Component 217"] {
+  position: relative;
+  z-index: 1;
+}
+
+/* Video layer */
+[data-name="Component 217"] > div:nth-child(1) {
+  z-index: 0;
+}
+
+/* Overlay layer */
+[data-name="Component 217"] > div:nth-child(2) {
+  z-index: 1;
+}
+
+/* Title layer */
+[data-name="Component 217"] > div:nth-child(3) {
+  z-index: 10;
+}
+
+/* Card layer - highest */
+[data-name="Component 217"] > div:nth-child(4) {
+  z-index: 20;
+}
+
+/* ────────────────────
+   BREATHING ROOM
+   ──────────────────── */
+
+/* Add padding to prevent edge collision */
+@media (max-width: 767px) {
+  [data-name="Component 217"] {
+    padding: 16px 0;
+  }
+}
+
+@media (min-width: 768px) {
+  [data-name="Component 217"] {
+    padding: 24px 40px;
+  }
+}
+
+/* ────────────────────
+   CONTENT GRID
+   ──────────────────── */
+
+/* Desktop: Two-column layout */
+@media (min-width: 768px) {
+  [data-name="Component 217"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+}
+
+/* Mobile: Stacked layout */
+@media (max-width: 767px) {
+  [data-name="Component 217"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+/* ────────────────────
+   ANTI-OVERLAP
+   ──────────────────── */
+
+/* Force separation on all viewports */
+[data-name="Component 217"] > * {
+  pointer-events: auto;
+  isolation: isolate;
+}
+
+/* Prevent title from bleeding into card area */
+@media (min-width: 768px) {
+  [data-name="Component 217"] > div:nth-child(3) {
+    max-width: 720px;
+  }
+  
+  [data-name="Component 217"] > div:nth-child(4) {
+    max-width: 480px;
+    margin-left: auto;
+  }
+}
+
+/* ────────────────────
+   RESPONSIVE HEIGHTS
+   ──────────────────── */
+
+/* Mobile: Allow content to breathe */
+@media (max-width: 767px) {
+  [data-name="Component 217"] {
+    min-height: 500px;
+    height: auto !important;
+    max-height: none;
+  }
+}
+
+/* Tablet: Intermediate height */
+@media (min-width: 768px) and (max-width: 1023px) {
+  [data-name="Component 217"] {
+    height: 480px;
+  }
+}
+
+/* Desktop: Original height */
+@media (min-width: 1024px) {
+  [data-name="Component 217"] {
+    height: 509px;
+  }
+}
+
+/* ────────────────────
+   ANIMATION SAFETY
+   ──────────────────── */
+
+/* Ensure animations don't cause overlap */
+[data-name="Component 217"] [class*="motion"] {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Prevent animation jank during separation */
+@media (max-width: 767px) {
+  [data-name="Component 217"] [class*="motion"] {
+    transition-timing-function: ease-out;
+  }
+}

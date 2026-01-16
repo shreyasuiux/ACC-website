@@ -1,0 +1,401 @@
+/**
+ * MOBILE PERFORMANCE OPTIMIZATION
+ * 
+ * This CSS file optimizes scrolling performance on mobile devices
+ * by leveraging hardware acceleration and preventing layout thrashing.
+ * 
+ * NO UI CHANGES - Only performance improvements
+ */
+
+/* ============================================
+   1. HARDWARE ACCELERATION
+   ============================================ */
+
+/* Force GPU acceleration for all animated elements */
+[class*="motion-"],
+[class*="animate-"],
+.motion-div,
+motion-div {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Hardware acceleration for images */
+img,
+video {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+/* ============================================
+   2. SCROLL OPTIMIZATION
+   ============================================ */
+
+/* Enable smooth scrolling with optimization */
+html {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Optimize scroll container */
+body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+}
+
+/* Prevent layout shift during scroll */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
+   3. ANIMATION OPTIMIZATION
+   ============================================ */
+
+/* Reduce motion for better performance on mobile */
+@media (max-width: 768px) {
+  /* Simplify animations on mobile */
+  [class*="motion-"],
+  [class*="animate-"] {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
+  }
+  
+  /* Disable complex transforms on scroll */
+  .motion-safe\:animate-pulse,
+  .motion-safe\:animate-spin,
+  .motion-safe\:animate-bounce {
+    animation: none;
+  }
+}
+
+/* ============================================
+   4. PAINT OPTIMIZATION
+   ============================================ */
+
+/* Create separate compositing layers for heavy elements */
+.relative,
+.absolute,
+.fixed {
+  will-change: auto;
+}
+
+/* Optimize specific heavy sections */
+section {
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* Optimize cards and grid items */
+[class*="grid"] > * {
+  contain: layout paint;
+}
+
+/* ============================================
+   5. IMAGE OPTIMIZATION
+   ============================================ */
+
+/* Prevent image decode during scroll */
+img {
+  image-rendering: auto;
+  content-visibility: auto;
+}
+
+/* Lazy loading hint */
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* ============================================
+   6. SPECIFIC MOBILE OPTIMIZATIONS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Disable complex hover effects on mobile */
+  *:hover {
+    transform: none !important;
+  }
+  
+  /* Optimize background gradients */
+  [style*="gradient"] {
+    will-change: opacity;
+    transform: translateZ(0);
+  }
+  
+  /* Reduce blur effects on mobile for better performance */
+  [style*="blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Optimize cards */
+  [class*="card"],
+  [class*="rounded"] {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Disable pointer events during scroll */
+  .scrolling * {
+    pointer-events: none !important;
+  }
+}
+
+/* ============================================
+   7. CONTAIN INTRINSIC SIZE (prevent layout shifts)
+   ============================================ */
+
+/* Set minimum sizes to prevent reflow */
+section {
+  contain-intrinsic-size: 100vw 50vh;
+}
+
+/* ============================================
+   8. REDUCE REPAINTS
+   ============================================ */
+
+/* Prevent unnecessary repaints */
+.overflow-hidden {
+  contain: layout paint;
+}
+
+/* Optimize fixed elements */
+.fixed,
+[class*="fixed"] {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ============================================
+   9. INTERSECTION OBSERVER OPTIMIZATION
+   ============================================ */
+
+/* Optimize elements that use IntersectionObserver */
+[data-inview],
+[class*="fade-in"],
+[class*="slide-in"] {
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
+
+/* ============================================
+   10. NAVIGATION OPTIMIZATION
+   ============================================ */
+
+/* Optimize fixed navigation */
+nav,
+header {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+/* ============================================
+   11. MODAL & OVERLAY OPTIMIZATION
+   ============================================ */
+
+/* Optimize modals and overlays */
+[role="dialog"],
+[class*="modal"],
+[class*="overlay"] {
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ============================================
+   12. REDUCE COMPOSITE LAYERS
+   ============================================ */
+
+/* Only apply will-change when needed */
+@media (hover: none) and (pointer: coarse) {
+  /* Mobile devices */
+  * {
+    will-change: auto !important;
+  }
+  
+  /* Only animate transforms and opacity */
+  [class*="motion-"]:not(.motion-reduce) {
+    will-change: transform, opacity;
+  }
+}
+
+/* ============================================
+   13. TOUCH OPTIMIZATION
+   ============================================ */
+
+/* Improve touch responsiveness */
+button,
+a,
+[role="button"],
+[class*="cursor-pointer"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ============================================
+   14. FONT RENDERING OPTIMIZATION
+   ============================================ */
+
+/* Optimize text rendering */
+body,
+p,
+h1, h2, h3, h4, h5, h6,
+span {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+}
+
+/* ============================================
+   15. SCROLL SNAP OPTIMIZATION
+   ============================================ */
+
+/* Optimize scroll containers */
+.overflow-x-auto,
+.overflow-y-auto,
+[class*="overflow-"] {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-snap-stop: normal;
+}
+
+/* ============================================
+   16. SPECIFIC COMPONENT OPTIMIZATIONS
+   ============================================ */
+
+/* Hero section optimization */
+[class*="hero"],
+[class*="banner"] {
+  will-change: opacity;
+  transform: translateZ(0);
+  contain: layout paint;
+}
+
+/* Card grid optimization */
+[class*="grid-cols"] {
+  contain: layout;
+}
+
+[class*="grid-cols"] > * {
+  contain: layout paint;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Video/Image containers */
+[class*="video"],
+[class*="image-container"] {
+  contain: layout paint;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ============================================
+   17. DISABLE HEAVY EFFECTS ON SCROLL
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Disable shadows during interactions */
+  .scrolling [class*="shadow"] {
+    box-shadow: none !important;
+  }
+  
+  /* Simplify borders */
+  .scrolling [class*="border"] {
+    border-color: transparent !important;
+  }
+}
+
+/* ============================================
+   18. CRITICAL PERFORMANCE FIXES
+   ============================================ */
+
+/* Prevent layout thrashing */
+@media (max-width: 768px) {
+  /* Disable expensive CSS filters */
+  [style*="backdrop-filter"],
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Simplify gradients */
+  [style*="linear-gradient"],
+  [style*="radial-gradient"] {
+    will-change: opacity;
+    transform: translateZ(0);
+  }
+  
+  /* Optimize motion animations */
+  [class*="motion-"] {
+    animation-timing-function: linear !important;
+    transition-timing-function: linear !important;
+  }
+}
+
+/* ============================================
+   19. REDUCE PAINT AREA
+   ============================================ */
+
+/* Contain paint for sections */
+@media (max-width: 768px) {
+  section,
+  main,
+  article {
+    contain: layout style paint;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
+}
+
+/* ============================================
+   20. EMERGENCY PERFORMANCE MODE
+   ============================================ */
+
+/* Apply aggressive optimizations for very slow devices */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    will-change: auto !important;
+  }
+}
+
+/* ============================================
+   21. REDUCE MOTION ON MOBILE CLASS
+   ============================================ */
+
+/* Applied by useReduceMotionOnMobile hook */
+.reduce-motion-mobile * {
+  animation-duration: 0.2s !important;
+  transition-duration: 0.2s !important;
+  animation-timing-function: linear !important;
+  transition-timing-function: linear !important;
+}
+
+/* Simplify complex animations */
+.reduce-motion-mobile [class*="motion-"],
+.reduce-motion-mobile [class*="animate-"] {
+  animation-duration: 0.15s !important;
+  transition-duration: 0.15s !important;
+}
+
+/* Disable decorative animations */
+.reduce-motion-mobile .motion-safe\:animate-pulse,
+.reduce-motion-mobile .motion-safe\:animate-spin,
+.reduce-motion-mobile .motion-safe\:animate-bounce {
+  animation: none !important;
+}

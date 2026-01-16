@@ -1,0 +1,20 @@
+/* Google Fonts - Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Custom font fallbacks */
+@font-face {
+  font-family: 'Graphik_Compact_Trial';
+  src: local('Arial'), local('Helvetica');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Graphik_Compact_Trial';
+  src: local('Arial'), local('Helvetica');
+  font-weight: 300;
+  font-style: normal;
+}

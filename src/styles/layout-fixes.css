@@ -1,0 +1,169 @@
+/**
+ * LAYOUT FIXES
+ * PURPOSE: Fix width, spacing, and consistency issues WITHOUT changing visual design
+ * PRESERVES: All colors, typography, visual style
+ */
+
+/* ────────────────────
+   FRAME WIDTH FIX
+   ──────────────────── */
+
+/* Ensure no horizontal overflow */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ────────────────────
+   SPACING NORMALIZATION
+   Desktop: 8, 16, 24, 40, 80px
+   Mobile: 8, 12, 16, 24, 40px
+   ──────────────────── */
+
+/* Normalize section gaps while preserving visual density */
+.section-gap-normal {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .section-gap-normal {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+.section-gap-compact {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .section-gap-compact {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+/* ────────────────────
+   RESPONSIVE TEXT FIX
+   ──────────────────── */
+
+/* Allow text to wrap on mobile to prevent overflow */
+@media (max-width: 767px) {
+  .text-nowrap {
+    white-space: normal !important;
+  }
+  
+  p[class*="text-nowrap"],
+  div[class*="text-nowrap"] {
+    white-space: normal !important;
+    word-wrap: break-word;
+  }
+}
+
+/* ────────────────────
+   BUTTON TAP TARGET FIX (Mobile Only)
+   ──────────────────── */
+
+@media (max-width: 767px) {
+  button,
+  [role="button"],
+  div[onclick] {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+}
+
+/* ────────────────────
+   CARD HEIGHT CONSISTENCY (Desktop Only)
+   ──────────────────── */
+
+@media (min-width: 768px) {
+  /* Ensure all case study cards have equal height */
+  [data-name*="Component 2"]:not([data-name*="Component 217"]):not([data-name*="Component 20"]) {
+    height: 424px !important;
+  }
+}
+
+/* ────────────────────
+   MOBILE RESPONSIVE STACKING
+   ──────────────────── */
+
+@media (max-width: 767px) {
+  /* Product cards section */
+  [data-name="Desktop - 15"] {
+    height: auto !important;
+    width: 100% !important;
+    position: relative !important;
+    padding: 40px 16px;
+  }
+  
+  /* Hero section adjustment */
+  [data-name="Component 217"] {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 400px;
+    left: 0 !important;
+  }
+  
+  /* Case study cards - stack on mobile */
+  [data-name*="Component 2"][class*="absolute"] {
+    position: relative !important;
+    width: 100% !important;
+    left: auto !important;
+    top: auto !important;
+    margin-left: 0 !important;
+    margin-top: 16px !important;
+    height: auto !important;
+    min-height: 300px;
+  }
+}
+
+/* ────────────────────
+   CONTAINER WIDTH FIXES
+   ──────────────────── */
+
+/* Fix width on elements that should be 1440px max */
+[data-name="Desktop - 72"],
+[data-name="Component 217"],
+[data-name="Desktop - 15"] {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ────────────────────
+   IMAGE ASPECT RATIO FIX
+   ──────────────────── */
+
+/* Ensure images maintain aspect ratio */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Preserve aspect ratio for background images in cards */
+@media (min-width: 768px) {
+  [data-name*="Component 2"] img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ────────────────────
+   GRID ALIGNMENT FIX
+   ──────────────────── */
+
+/* Ensure cards align properly in grid */
+@media (min-width: 768px) {
+  /* Case studies grid should have consistent gaps */
+  [data-name*="Component 2"]:not(:first-child) {
+    margin-top: 24px;
+  }
+}

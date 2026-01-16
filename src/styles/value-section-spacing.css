@@ -1,0 +1,166 @@
+/**
+ * 360° VALUE SECTION SPACING FIX
+ * PURPOSE: Add proper spacing between divider and section content
+ * ISSUE: Divider was touching the section content (looked unprofessional)
+ */
+
+/* ============================================
+   DESKTOP SPACING (≥768px)
+   ============================================ */
+
+@media (min-width: 768px) {
+  /* Container with the divider */
+  div[data-name="Container"][class*="max-w-[1280px]"] {
+    padding-top: 120px !important;
+  }
+  
+  /* Divider positioning - proper spacing from top */
+  div[data-name="Container"][class*="max-w-[1280px]"] > div[class*="absolute"][class*="h-px"] {
+    top: 80px !important;
+  }
+}
+
+/* ============================================
+   MOBILE SPACING (≤767px)
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* Container with the divider */
+  div[data-name="Container"][class*="max-w-[1280px]"] {
+    padding-top: 80px !important;
+  }
+  
+  /* Divider positioning - proper spacing from top */
+  div[data-name="Container"][class*="max-w-[1280px]"] > div[class*="absolute"][class*="h-px"] {
+    top: 40px !important;
+  }
+}
+
+/* ============================================
+   TABLET OPTIMIZATION (768px - 1023px)
+   ============================================ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Slightly tighter spacing on tablets */
+  div[data-name="Container"][class*="max-w-[1280px]"] {
+    padding-top: 100px !important;
+  }
+  
+  div[data-name="Container"][class*="max-w-[1280px]"] > div[class*="absolute"][class*="h-px"] {
+    top: 60px !important;
+  }
+}
+
+/* ============================================
+   SMALL MOBILE (≤390px)
+   ============================================ */
+
+@media (max-width: 390px) {
+  /* Slightly reduced spacing on very small screens */
+  div[data-name="Container"][class*="max-w-[1280px]"] {
+    padding-top: 64px !important;
+  }
+  
+  div[data-name="Container"][class*="max-w-[1280px]"] > div[class*="absolute"][class*="h-px"] {
+    top: 32px !important;
+  }
+}
+
+/* ============================================
+   DIVIDER VISUAL ENHANCEMENTS
+   ============================================ */
+
+/* Ensure divider has proper opacity and blur */
+div[data-name="Container"] > div[class*="bg-gradient-to-r"][class*="purple-500"] {
+  opacity: 0.6;
+  filter: blur(0.5px);
+}
+
+/* Smooth animation for divider appearance */
+div[data-name="Container"] > div[class*="h-px"] {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* ============================================
+   CONTENT SPACING BELOW DIVIDER
+   ============================================ */
+
+/* Ensure proper spacing between divider and "360° VALUE" heading */
+div[data-name="Container"] > div[data-name="Container"]:first-of-type {
+  margin-top: 0;
+}
+
+/* ============================================
+   RESPONSIVE PADDING ADJUSTMENTS
+   ============================================ */
+
+/* Desktop: 120px top padding, divider at 80px */
+@media (min-width: 1024px) {
+  div[data-name="Container"][class*="max-w-[1280px]"] {
+    padding-top: 120px !important;
+  }
+  
+  div[data-name="Container"][class*="max-w-[1280px]"] > div[class*="absolute"][class*="h-px"] {
+    top: 80px !important;
+  }
+}
+
+/* Large Desktop: More breathing room */
+@media (min-width: 1440px) {
+  div[data-name="Container"][class*="max-w-[1280px]"] {
+    padding-top: 140px !important;
+  }
+  
+  div[data-name="Container"][class*="max-w-[1280px]"] > div[class*="absolute"][class*="h-px"] {
+    top: 100px !important;
+  }
+}
+
+/* ============================================
+   SPACING RATIO CONSISTENCY
+   ============================================ */
+
+/**
+ * Design System Rule:
+ * - Space above divider = Space below divider
+ * - Mobile: 40px above, 40px below = 80px total padding-top
+ * - Desktop: 80px above, 40px below = 120px total padding-top
+ * 
+ * This creates balanced, professional spacing
+ */
+
+/* ============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+
+/* Ensure divider is visible but not distracting */
+@media (prefers-reduced-motion: reduce) {
+  div[data-name="Container"] > div[class*="h-px"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  div[data-name="Container"] > div[class*="bg-gradient-to-r"][class*="purple-500"] {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  /* Remove divider in print view */
+  div[data-name="Container"] > div[class*="h-px"] {
+    display: none;
+  }
+  
+  /* Reduce padding for print */
+  div[data-name="Container"][class*="max-w-[1280px]"] {
+    padding-top: 40px !important;
+  }
+}

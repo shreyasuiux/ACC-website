@@ -1,0 +1,117 @@
+/**
+ * MOBILE CASE STUDY CAROUSEL
+ * Professional horizontal scroller with optimal UI/UX
+ * - Smooth momentum scrolling
+ * - Snap-to-card behavior
+ * - Visual scroll indicators
+ * - Touch-optimized performance
+ */
+
+/* Hide scrollbar completely */
+.mobile-carousel-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.mobile-carousel-scroll::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Optimal scroll behavior for mobile */
+.mobile-carousel-scroll {
+  /* Smooth native scrolling with momentum */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Snap to card positions when scroll ends */
+  scroll-snap-type: x proximity;
+  scroll-padding: 0 0 0 16px;
+  
+  /* Prevent overscroll bounce on the x-axis */
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+  
+  /* Performance optimization */
+  will-change: scroll-position;
+  
+  /* Smooth scroll for programmatic scrolling */
+  scroll-behavior: smooth;
+}
+
+/* Card snap points - each card snaps to start position */
+.mobile-carousel-scroll > div > div {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/* Prevent text selection during scroll */
+.mobile-carousel-scroll {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Enable text selection inside cards when not scrolling */
+.mobile-carousel-card {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}
+
+/* Card performance optimizations */
+.mobile-carousel-card {
+  /* GPU acceleration */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  
+  /* Smooth rendering */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
+  /* Performance hints */
+  will-change: transform;
+}
+
+/* Container isolation for better performance */
+.mobile-carousel-wrapper {
+  isolation: isolate;
+  contain: layout style paint;
+  position: relative;
+}
+
+/* Touch optimization - remove tap highlights */
+@media (hover: none) and (pointer: coarse) {
+  .mobile-carousel-card,
+  .mobile-carousel-scroll,
+  .mobile-carousel-wrapper button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Focus states for accessibility */
+.mobile-carousel-wrapper button:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.8);
+  outline-offset: 4px;
+  border-radius: 999px;
+}
+
+/* Smooth transitions for all interactive elements */
+.mobile-carousel-wrapper button {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade edge gradients */
+.mobile-carousel-fade-left,
+.mobile-carousel-fade-right {
+  pointer-events: none;
+  transition: opacity 300ms ease-out;
+}
+
+/* Ensure cards maintain proper spacing */
+.mobile-carousel-scroll > div {
+  display: flex;
+  gap: 16px;
+  min-width: min-content;
+}

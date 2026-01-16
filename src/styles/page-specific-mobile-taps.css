@@ -1,0 +1,473 @@
+/**
+ * PAGE-SPECIFIC MOBILE TAP INTERACTIONS
+ * PURPOSE: Specific hover-to-tap conversions for each page type
+ * SCOPE: Service pages, Product pages, Company pages, Case Studies
+ */
+
+/* ============================================
+   SERVICE PAGES - ALL 7 PAGES
+   Cloud Practice, Digital Engineering, Big Data,
+   App Modernization, Security, Database, ERP Testing
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Service capability cards */
+  [data-page="service"] [class*="rounded-[24px]"][class*="hover:border"]:active,
+  [data-page="service"] [class*="rounded-[24px]"][class*="hover:border"].tap-active {
+    border-color: rgba(160, 32, 240, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(160, 32, 240, 0.2) !important;
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Service feature items */
+  [data-page="service"] [class*="p-6"]:active [class*="CheckCircle"],
+  [data-page="service"] [class*="p-5"]:active [class*="CheckCircle"] {
+    color: rgb(160, 32, 240) !important;
+    transform: scale(1.1);
+  }
+
+  /* Service tech stack icons */
+  [data-page="service"] [class*="hover:scale"]:active,
+  [data-page="service"] [class*="hover:scale"].tap-active {
+    transform: scale(1.1) rotate(5deg) !important;
+  }
+
+  /* Service metrics/stats */
+  [data-page="service"] [class*="counter"]:active,
+  [data-page="service"] [class*="stat"]:active {
+    color: rgb(160, 32, 240) !important;
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================
+   PRODUCT PAGES - ALL 6 PAGES
+   Agent Studio, Atlas API, Ottohm, ITSM, AIOps, Smart Contracts
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Product feature cards */
+  [data-page="product"] [class*="rounded-[24px]"]:active,
+  [data-page="product"] [class*="rounded-[24px]"].tap-active {
+    border-color: rgba(160, 32, 240, 0.4) !important;
+    background: linear-gradient(135deg, rgba(160, 32, 240, 0.1) 0%, rgba(160, 32, 240, 0.05) 100%) !important;
+    transform: translateY(-4px);
+  }
+
+  /* Product dimension cards */
+  [data-page="product"] [class*="p-8"][class*="rounded"]:active,
+  [data-page="product"] [class*="p-8"][class*="rounded"].tap-active {
+    box-shadow: 0 12px 40px rgba(160, 32, 240, 0.25) !important;
+    border-color: rgba(160, 32, 240, 0.5) !important;
+  }
+
+  /* Product capability items */
+  [data-page="product"] [class*="flex items-start gap-3"]:active {
+    background-color: rgba(160, 32, 240, 0.05) !important;
+    border-left: 3px solid rgb(160, 32, 240);
+    padding-left: 1rem;
+  }
+
+  /* Product screenshots/images */
+  [data-page="product"] img:active {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+  }
+}
+
+/* ============================================
+   AI PAGES - BFSI Agents, Brand Management Agents
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* AI use case cards */
+  [data-page="ai"] .group[class*="rounded-[24px]"]:active,
+  [data-page="ai"] .group[class*="rounded-[24px]"].tap-active {
+    border-color: rgba(160, 32, 240, 0.5) !important;
+    box-shadow: 0 16px 48px rgba(160, 32, 240, 0.3) !important;
+  }
+
+  /* AI use case images - scale on tap */
+  [data-page="ai"] .group:active img,
+  [data-page="ai"] .group.tap-active img {
+    transform: scale(1.1);
+    transition: transform 0.4s ease;
+  }
+
+  /* AI use case glow effect - show on tap */
+  [data-page="ai"] .group:active [class*="opacity-0"],
+  [data-page="ai"] .group.tap-active [class*="opacity-0"] {
+    opacity: 1 !important;
+  }
+
+  /* AI CTA buttons - enhanced feedback */
+  [data-page="ai"] button:active [class*="ArrowRight"],
+  [data-page="ai"] .tap-active [class*="ArrowRight"] {
+    transform: translateX(8px) !important;
+  }
+
+  /* AI tab navigation */
+  [data-page="ai"] [role="tab"]:active,
+  [data-page="ai"] [role="tab"].tap-active {
+    color: white !important;
+    border-bottom: 2px solid rgb(160, 32, 240);
+  }
+}
+
+/* ============================================
+   CASE STUDIES PAGE
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Case study cards */
+  [data-page="casestudies"] .group:active,
+  [data-page="casestudies"] .group.tap-active {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 60px rgba(160, 32, 240, 0.3) !important;
+    border-color: rgba(160, 32, 240, 0.6) !important;
+  }
+
+  /* Case study category badges */
+  [data-page="casestudies"] [class*="badge"]:active,
+  [data-page="casestudies"] [class*="category"]:active {
+    background-color: rgb(160, 32, 240) !important;
+    color: white !important;
+    transform: scale(1.1);
+  }
+
+  /* Case study "Read More" links */
+  [data-page="casestudies"] button[class*="Learn More"]:active,
+  [data-page="casestudies"] button[class*="Read More"]:active {
+    color: rgb(160, 32, 240) !important;
+    text-decoration: underline;
+  }
+
+  /* Case study filters/tabs */
+  [data-page="casestudies"] [class*="filter"]:active,
+  [data-page="casestudies"] [class*="tab"]:active {
+    background-color: rgb(160, 32, 240) !important;
+    color: white !important;
+    transform: scale(0.95);
+  }
+}
+
+/* ============================================
+   COMPANY PAGES - Our Team, About Us, Partners, Careers, News
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Team member cards */
+  [data-page="team"] [class*="rounded"]:active,
+  [data-page="team"] [class*="rounded"].tap-active {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(160, 32, 240, 0.25) !important;
+  }
+
+  /* Team member photos */
+  [data-page="team"] img:active {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+
+  /* Partner logos */
+  [data-page="partners"] img:active,
+  [data-page="partners"] [class*="logo"]:active {
+    transform: scale(1.15);
+    filter: brightness(1.2) saturate(1.2);
+  }
+
+  /* Partner cards */
+  [data-page="partners"] [class*="rounded"]:active {
+    border-color: rgba(160, 32, 240, 0.5) !important;
+    background-color: rgba(160, 32, 240, 0.05) !important;
+  }
+
+  /* Career job cards */
+  [data-page="careers"] [class*="job-card"]:active,
+  [data-page="careers"] [class*="position"]:active {
+    border-left: 4px solid rgb(160, 32, 240);
+    background-color: rgba(160, 32, 240, 0.08) !important;
+    transform: translateX(8px);
+  }
+
+  /* News article cards */
+  [data-page="news"] article:active,
+  [data-page="news"] [class*="news-card"]:active {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(160, 32, 240, 0.2) !important;
+  }
+
+  /* About us timeline items */
+  [data-page="about"] [class*="timeline"]:active,
+  [data-page="about"] [class*="milestone"]:active {
+    transform: scale(1.05);
+    background-color: rgba(160, 32, 240, 0.1) !important;
+  }
+}
+
+/* ============================================
+   HOME PAGE SPECIFIC
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Hero CTA buttons */
+  [data-name="Component 217"] button:active {
+    transform: scale(0.95) translateY(2px);
+    box-shadow: 0 4px 20px rgba(160, 32, 240, 0.4) !important;
+  }
+
+  /* Product cards on home */
+  [data-name="ProductsSection"] [class*="rounded"]:active {
+    border-color: rgba(160, 32, 240, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(160, 32, 240, 0.2) !important;
+  }
+
+  /* Use case cards on home */
+  [data-component="UseCasesSection"] .group:active,
+  [data-component="UseCasesSection"] .group.tap-active {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(160, 32, 240, 0.25) !important;
+  }
+
+  /* Award cards */
+  [data-name*="Component 186"]:active,
+  [data-name*="Component 187"]:active,
+  [data-name*="Component 218"]:active,
+  [data-name*="Component 219"]:active {
+    transform: scale(1.03) translateY(-4px);
+    box-shadow: 0 12px 40px rgba(160, 32, 240, 0.2) !important;
+  }
+
+  /* Career opportunities section */
+  [data-name="Component 185"] button:active {
+    background-color: rgba(160, 32, 240, 0.9) !important;
+    transform: scale(0.98);
+  }
+}
+
+/* ============================================
+   COMMON COMPONENTS ACROSS ALL PAGES
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* CTA buttons in footer sections */
+  footer button:active,
+  [class*="cta-section"] button:active {
+    transform: scale(0.95) translateY(2px);
+    box-shadow: 0 4px 16px rgba(160, 32, 240, 0.3) !important;
+  }
+
+  /* Social media icons */
+  [class*="social"] a:active,
+  [aria-label="LinkedIn"]:active,
+  [aria-label="Instagram"]:active,
+  [aria-label="Facebook"]:active,
+  [aria-label="Twitter"]:active {
+    background-color: rgba(160, 32, 240, 0.3) !important;
+    border-color: rgba(160, 32, 240, 0.6) !important;
+    transform: scale(1.15) rotate(5deg);
+  }
+
+  [class*="social"] a:active svg,
+  [aria-label*="social"]:active svg {
+    color: rgb(160, 32, 240) !important;
+    transform: scale(1.2);
+  }
+
+  /* Breadcrumb navigation */
+  [class*="breadcrumb"] a:active,
+  [class*="breadcrumb"] button:active {
+    color: rgb(160, 32, 240) !important;
+    text-decoration: underline;
+  }
+
+  /* Back buttons */
+  button[class*="back"]:active,
+  button[class*="close"]:active {
+    transform: scale(0.9) rotate(-5deg);
+    background-color: rgba(160, 32, 240, 0.2) !important;
+  }
+
+  /* "Get Started" modals trigger buttons */
+  button[class*="Get Started"]:active,
+  button[class*="get-started"]:active {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    transform: scale(0.95);
+    box-shadow: 0 8px 32px rgba(160, 32, 240, 0.4) !important;
+  }
+
+  /* Navigation dropdowns */
+  nav [class*="dropdown"]:active,
+  nav [class*="menu-item"]:active {
+    background-color: rgba(160, 32, 240, 0.15) !important;
+    color: white !important;
+  }
+
+  /* Search inputs (if any) */
+  input[type="search"]:active,
+  input[type="text"]:active {
+    border-color: rgba(160, 32, 240, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(160, 32, 240, 0.1) !important;
+  }
+
+  /* Accordion headers */
+  [class*="accordion"]:active,
+  [class*="collapsible"]:active {
+    background-color: rgba(160, 32, 240, 0.1) !important;
+    border-color: rgba(160, 32, 240, 0.3) !important;
+  }
+
+  /* Video play buttons */
+  [class*="play"]:active,
+  [class*="video"] button:active {
+    transform: scale(0.9);
+    background-color: rgba(160, 32, 240, 0.8) !important;
+  }
+
+  /* Pagination */
+  [class*="pagination"] button:active,
+  [role="navigation"] button:active {
+    background-color: rgb(160, 32, 240) !important;
+    color: white !important;
+    transform: scale(0.95);
+  }
+
+  /* Tags/Pills */
+  [class*="tag"]:active,
+  [class*="pill"]:active,
+  [class*="badge"]:active {
+    background-color: rgb(160, 32, 240) !important;
+    color: white !important;
+    transform: scale(1.05);
+  }
+}
+
+/* ============================================
+   FEEDBACK ANIMATIONS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Pulse animation on first tap */
+  @keyframes tap-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(160, 32, 240, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(160, 32, 240, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(160, 32, 240, 0);
+    }
+  }
+
+  /* Apply pulse to interactive elements on tap */
+  [class*="hover:"]:active {
+    animation: tap-pulse 0.6s ease-out;
+  }
+
+  /* Bounce animation for cards */
+  @keyframes tap-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .group:active,
+  .tap-active {
+    animation: tap-bounce 0.4s ease;
+  }
+
+  /* Shine effect on tap */
+  @keyframes tap-shine {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  button:active::before,
+  [role="button"]:active::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: tap-shine 0.6s ease;
+    pointer-events: none;
+  }
+}
+
+/* ============================================
+   PERSISTENT TAP STATE INDICATORS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Visual indicator that element is in "tapped" state */
+  .tap-active {
+    position: relative;
+  }
+
+  .tap-active::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border: 2px solid rgba(160, 32, 240, 0.4);
+    border-radius: inherit;
+    pointer-events: none;
+    animation: tap-border-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes tap-border-pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Show focus outlines for keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid rgb(160, 32, 240);
+    outline-offset: 2px;
+  }
+
+  /* But hide for mouse/touch */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Enhanced contrast for tapped states */
+  .tap-active {
+    filter: brightness(1.1) contrast(1.05);
+  }
+
+  /* Motion safe mode */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
